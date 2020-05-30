@@ -58,14 +58,12 @@ Jilber Urbina.
 # McNeal A., Frey R. and Embrechts P (2005).
 
 alpha <- c(.90, .95, .975, .99, .995)
- (VaR(Loss=1, varcov=(0.2/sqrt(250))^2, alpha=alpha,
-      model='both', df=4)-1)*10000
+VaR(Loss=0, varcov=(10000*0.2/sqrt(250))^2, alpha=alpha, model='both', df=4)
  
  # only normal VaR results
- (VaR(Loss=1, varcov=(0.2/sqrt(250))^2, alpha=alpha)-1)*10000
+VaR(Loss=0, varcov=(10000*0.2/sqrt(250))^2, alpha=alpha)
  
- # Same result using
-  (Risk(Loss=1, varcov=(0.2/sqrt(250))^2, alpha=alpha)-1)*10000
+
 
 }
 

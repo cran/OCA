@@ -8,18 +8,18 @@
 Standard risk measures such VaR and ES are provided by \code{Risk}. Both VaR and ES can be computed using either the normal or t-student distribution.
 }
 \usage{
-Risk(Loss, varcov, alpha = 0.95, 
+Risk(Loss, variance, alpha = 0.95, 
      measure = c("VaR", "ES", "both"), 
      weights = NULL, 
      model = c("normal", "t-student", "both"),
-     df = NULL)
+     df = NULL, percentage = FALSE)
 }
 
 \arguments{
   \item{Loss}{
    It could be either a scalar or a $m x 1$ matrix containing the mean losses.
 }
-  \item{varcov}{
+  \item{variance}{
    A scalar corresponding to the variance of the loss, if \code{Loss} is a $m x 1$ matrix, then \code{varcov} must be a $m x m$ matrix containing the variances and covariances of the losses.
 }
   \item{alpha}{
@@ -37,6 +37,12 @@ Risk(Loss, varcov, alpha = 0.95,
   \item{df}{
    An integer (df>2) denoting the degrees of freedom, only required if \code{model='t-student'}. Otherwise it has to be \code{NULL}.
 }
+
+  \item{percentage}{
+   Logical indicating whether the file names in the VaR table should be presented in percentage or decimal.
+   \code{NULL}.
+}
+
 }
 
 
@@ -65,19 +71,18 @@ Jilber Urbina.
 # Reproducing Table 2.1 in page 47 of 
 # McNeal A., Frey R. and Embrechts P (2005).
  alpha <- c(.90, .95, .975, .99, .995)
- (Risk(Loss=1, varcov=(0.2/sqrt(250))^2, alpha=alpha, 
-       measure='both', model='both', df=4)-1)*10000
+ (Risk(Loss=0, variance=(0.2/sqrt(250))^2, alpha=alpha, 
+       measure='both', model='both', df=4))*10000
  
  # only VaR results
- (Risk(Loss=1, varcov=(0.2/sqrt(250))^2, alpha=alpha, 
-       measure='VaR', model='both', df=4)-1)*10000
+ (Risk(Loss=0, variance=(0.2/sqrt(250))^2, alpha=alpha, 
+       measure='VaR', model='both', df=4))*10000
  
  # only normal VaR results
- (Risk(Loss=1, varcov=(0.2/sqrt(250))^2, alpha=alpha)-1)*10000
+ (Risk(Loss=0, variance=(0.2/sqrt(250))^2, alpha=alpha))*10000
  
  # only SE based on a 4 degrees t-student.
- (Risk(Loss=1, varcov=(0.2/sqrt(250))^2, alpha=alpha, 
-       measure='ES', model='t-student', df=4)-1)*10000
+ (Risk(Loss=0, variance=(0.2/sqrt(250))^2, alpha=alpha, 
+       measure='ES', model='t-student', df=4))*10000
 }
 
-\keyword{manip}

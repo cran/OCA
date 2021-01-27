@@ -12,8 +12,8 @@ Optimal Capital Allocation Principles
  \tabular{ll}{
  Package: \tab OCA\cr
  Type:    \tab Package\cr
- Version: \tab 0.1\cr
- Date:    \tab 2017-02-07\cr
+ Version: \tab 0.3\cr
+ Date:    \tab 2021-01-27\cr
  License: \tab GPL-2\cr
  }
 }
@@ -21,7 +21,7 @@ Optimal Capital Allocation Principles
 \author{
 Jilber Urbina
 
-Maintainer: Jilber Urbina <jilberurbina@gmail.com>
+Maintainer: Jilber Urbina <jurbina@cipadla.com>
 
 }
 \references{

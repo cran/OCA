@@ -1,5 +1,6 @@
 ES <-
-function(Loss, varcov, alpha=0.95, weights=NULL, model=c('normal', 't-student', 'both'), df=NULL)
+function(Loss, variance, alpha=0.95, weights=NULL, model=c('normal', 't-student', 'both'), 
+         df=NULL, percentage = FALSE)
 { # inicia la funcion
   # alpha <- as.numeric(alpha)
   model <- match.arg(model)
@@ -11,7 +12,7 @@ function(Loss, varcov, alpha=0.95, weights=NULL, model=c('normal', 't-student', 
   }
   alpha <- as.numeric(alpha)
   mu <- crossprod(w, L)
-  sigma <- sqrt(tcrossprod(w, crossprod(w, varcov)))
+  sigma <- sqrt(tcrossprod(w, crossprod(w, variance)))
                   
   
   if(model=='normal' | model=='both'){
@@ -19,7 +20,13 @@ function(Loss, varcov, alpha=0.95, weights=NULL, model=c('normal', 't-student', 
       x + y *dnorm(qnorm(alpha[i]))/(1-alpha[i])
     },  x=mu, y=sigma))
     ES.n <- t(data.frame(ES.n))
-    colnames(ES.n) <- paste(alpha, '%', sep='')
+  
+    if(percentage){
+      colnames(ES.n) <- paste(alpha*100, "%", sep = "")
+    } else {
+      colnames(ES.n) <- paste(alpha)
+    }
+    
     rownames(ES.n) <- 'ES normal'
            }
   
@@ -28,7 +35,12 @@ function(Loss, varcov, alpha=0.95, weights=NULL, model=c('normal', 't-student', 
       mu + .5* sqrt(sigma)*( dt(qt(alpha[i], df), df)/(1-alpha[i]) )*(df+qt(alpha[i], df)*qt(alpha[i], df))/(df-1),
                            sigma=(df*sigma^2)/(df-2), alpha=alpha, df=df))
     ES.t <- t(data.frame(ES.t))
-    colnames(ES.t) <- paste(alpha, '%', sep='')
+    if(percentage){
+      colnames(ES.t) <- paste(alpha*100, "%", sep = "")
+    } else {
+      colnames(ES.t) <- paste(alpha)
+    }
+    
     rownames(ES.t) <- 'ES t-student'
     
   }

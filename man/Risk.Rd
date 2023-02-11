@@ -28,7 +28,7 @@ with a single loss.}
 \item{weights}{A vector containing the weights. It is only needed if \code{variance} is a matrix, if it is not then \code{weights} is set to 1.}
 
 \item{model}{A character string indicating which probability model has to be used for computing the risk measures, it could only be a
-normal distribution or a t-student distribution with $v$ degrees of freedom. The normal distribution is the
+normal distribution or a t-student distribution with \mjteqn{v}{v}{} degrees of freedom. The normal distribution is the
 default model for this function. \code{model} default value is set to \code{'both'}
  to show normal and t-student VaR and ES. See example below.}
 
@@ -38,12 +38,9 @@ default model for this function. \code{model} default value is set to \code{'bot
 }
 \value{
 A \code{data.frame} containing each risk measure at its corresponding confidence level.
- @references
-Dhaene J., Tsanakas A., Valdez E. and Vanduffel S. (2011). \emph{Optimal Capital Allocation Principles}. The Journal of Risk and Insurance. Vol. 00, No. 0, 1-28.
-Urbina, J. (2013) \emph{Quantifying Optimal Capital Allocation Principles based on Risk Measures.} Master Thesis, Universitat Politècnica de Catalunya.
-Urbina, J. and Guillén, M. (2014). \emph{An application of capital allocation principles to operational risk and the cost of fraud}. Expert Systems with Applications. 41(16):7023-7031.
 }
 \description{
+\loadmathjax{}
 Risk measures such as Value at Risk (VaR) and Expected Shortfall (ES) with normal and t-student
 distributions based on variance-covariance method. It is a shortcut for VaR and ES.
 }
@@ -59,6 +56,13 @@ alpha <- c(.90, .95, .975, .99, .995)
 
 # only SE based on a 4 degrees t-student.
 (Risk(variance=(0.2/sqrt(250))^2, alpha=alpha, measure='ES', model='t-student', df=4))*10000
+}
+\references{
+Dhaene J., Tsanakas A., Valdez E. and Vanduffel S. (2011). \emph{Optimal Capital Allocation Principles}. The Journal of Risk and Insurance. Vol. 00, No. 0, 1-28.
+
+Urbina, J. (2013) \emph{Quantifying Optimal Capital Allocation Principles based on Risk Measures.} Master Thesis, Universitat Politècnica de Catalunya.
+
+Urbina, J. and Guillén, M. (2014). \emph{An application of capital allocation principles to operational risk and the cost of fraud}. Expert Systems with Applications. 41(16):7023-7031.
 }
 \seealso{
 \code{\link{VaR}}, \code{\link{ES}}

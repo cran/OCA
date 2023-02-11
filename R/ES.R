@@ -1,6 +1,7 @@
 #'Expected Shortfall
 #'
 #' @description
+#' \loadmathjax{}
 #'  Computes the Expected Shortfall of a given amount of loss based on variance-covariance method.
 #'
 #' @param variance It could be either a scalar or a matrix containing the variances and covariances
@@ -22,33 +23,33 @@
 #' @details
 #' \code{ES} computes the Expected Shortfall (ES) of a certaing amount of loss based upon the following general formulation:
 #'
-#'\deqn{
-#'  ES_{\alpha} = \frac{1}{(1-\alpha)} \int_{\alpha}^{1} VaR_{u}(X)du = E[X|X > F_{X}^{-1}(\alpha)].
-#'}
+#' \mjtdeqn{ES_\alpha = \frac{1}{1-\alpha}\int_{\alpha}^{1} VaR_u(X)du = E[X|X > F_{X}^{-1}(\alpha)]}{ES_\alpha = \dfrac{1}{1-\alpha}\int_{\alpha}^{1} VaR_u(X)du = E[X|X > F_{X}^{-1}(\alpha)]}{}
 #'
-#' where \eqn{\alpha}{\alpha} is the significance level, \eqn{VaR_{u}(X)}{VaR_u(X)} is the Value-at-Risk of \emph{X}.
+#'where \mjteqn{\alpha}{\alpha}{} is the significance level, \mjteqn{VaR_u(X)}{VaR_u(X)}{} is the Value-at-Risk of \mjteqn{X.}{X.}{}
 #'
-#'\code{ES} for the normal case is based on the following expression:
+#' \code{ES} for the normal case is based on the following expression:
 #'
-#'  \deqn{
-#'    ES_{\alpha} = \mu + \sigma \frac{\phi(\Phi^{-1}(\alpha))}{1-\alpha}
-#'  }
+#'\mjtdeqn{ES_{\alpha} = \mu + \sigma \frac{\phi(\Phi^{-1}(\alpha))}{1-\alpha}}{ES_{\alpha} = \mu + \sigma \frac{\phi(\Phi^{-1}(\alpha))}{1-\alpha}}{}
 #'
 #' Meanwhile, \code{ES} for the t-student distribution takes comes from:
 #'
-#'\deqn{
-#'ES_{\alpha}(\tilde{X}) = \frac{g_{\upsilon}(t_{\upsilon}^{-1}(\alpha))}{1-\alpha} \left( \frac{\upsilon+(t_{\upsilon}^{-1}(\alpha))^{2}}{\upsilon - 1} \right)
-#'}
+#'\mjtdeqn{ES_{\alpha}(\tilde{X}) = \frac{g_{\upsilon}(t_{\upsilon}^{-1}(\alpha))}{1-\alpha} \left( \frac{\upsilon+(t_{\upsilon}^{-1}(\alpha))^{2}}{\upsilon - 1} \right)}{ES_{\alpha}(\tilde{X}) = \frac{g_{\upsilon}(t_{\upsilon}^{-1}(\alpha))}{1-\alpha} \left( \frac{\upsilon+(t_{\upsilon}^{-1}(\alpha))^{2}}{\upsilon - 1} \right)}{}
 #'
 #' @references
 #' Dhaene J., Tsanakas A., Valdez E. and Vanduffel S. (2011). \emph{Optimal Capital Allocation Principles}. The Journal of Risk and Insurance. Vol. 00, No. 0, 1-28.
-#' McNeil, A. J.; Frey, R. & Embrechts, P. \emph{Quantitative risk management: concepts, techniques and tools}. Princeton University Press, 2005
+#'
+#' McNeil, A. J.; Frey, R. & Embrechts, P. \emph{Quantitative risk management: concepts, techniques and tools}. Princeton University Press, 2005.
+#'
 #' Urbina, J. (2013) \emph{Quantifying Optimal Capital Allocation Principles based on Risk Measures.} Master Thesis, Universitat Politècnica de Catalunya.
+#'
 #' Urbina, J. and Guillén, M. (2014). \emph{An application of capital allocation principles to operational risk and the cost of fraud}. Expert Systems with Applications. 41(16):7023-7031.
 
 #'
 #' @author Jilber Urbina
+#' @noMd
 #' @export
+#' @importFrom mathjaxr preview_rd
+
 #' @examples
 #'# Exercise 2.21, page 46 in McNeil et al (2005)
 #'alpha <- c(.90, .95, .975, .99, .995)

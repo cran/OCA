@@ -1,6 +1,7 @@
 #' Value at Risk
 #'
 #' @description
+#' \loadmathjax{}
 #' Analytical approach for calculating VaR based on Variance-Covariance Method based on both normal and t-student distribution.
 #'
 #' @param variance It could be either a scalar or a matrix containing the variances and covariances of the losses.
@@ -9,7 +10,7 @@
 #' @param weights A vector of weights of size \emph{N} for weighting the variance of losses. When \code{weights=NULL}, variances
 #'  used to compute VaR are the original values supplied to  \code{variance} with no weighting scheme.
 #' @param model A character string indicating which probability model has to be used for computing the risk
-#'  measures, it could be a normal distribution or a t-student distribution with $v$ degrees of freedom.
+#'  measures, it could be a normal distribution or a t-student distribution with \mjteqn{v}{v}{} degrees of freedom.
 #'  The normal distibution is the default model for this funcion. \code{model} also allows the user to set
 #'  \code{'both'} if she wishes both normal and t-student VaR or ES depending on what she choses in
 #'  \code{measure}. See example below.
@@ -22,14 +23,20 @@
 #'
 #' @references
 #' Dhaene J., Tsanakas A., Valdez E. and Vanduffel S. (2011). \emph{Optimal Capital Allocation Principles}. The Journal of Risk and Insurance. Vol. 00, No. 0, 1-28.
+#'
 #' Urbina, J. (2013) \emph{Quantifying Optimal Capital Allocation Principles based on Risk Measures.} Master Thesis, Universitat Politècnica de Catalunya.
+#'
 #' Urbina, J. and Guillén, M. (2014). \emph{An application of capital allocation principles to operational risk and the cost of fraud}. Expert Systems with Applications. 41(16):7023-7031.
 #'
 #' @seealso
 #'\code{\link{Risk}}, \code{\link{ES}}
 #'
 #' @author Jilber Urbina
+#' @noMd
 #' @export
+#' @importFrom mathjaxr preview_rd
+#' @importFrom stats cov dnorm dt qnorm qt var
+
 #' @examples
 #'
 #'# Reproducing VaR from Table 2.1 in page 47 of

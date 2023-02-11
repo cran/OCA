@@ -1,6 +1,7 @@
 #' Risk
 #'
 #' @description
+#' \loadmathjax{}
 #' Risk measures such as Value at Risk (VaR) and Expected Shortfall (ES) with normal and t-student
 #' distributions based on variance-covariance method. It is a shortcut for VaR and ES.
 #'
@@ -13,7 +14,7 @@
 #'   and the ES as a result. By default \code{measure} is set to be \code{"both"}.
 #' @param weights A vector containing the weights. It is only needed if \code{variance} is a matrix, if it is not then \code{weights} is set to 1.
 #' @param model A character string indicating which probability model has to be used for computing the risk measures, it could only be a
-#' normal distribution or a t-student distribution with $v$ degrees of freedom. The normal distribution is the
+#' normal distribution or a t-student distribution with \mjteqn{v}{v}{} degrees of freedom. The normal distribution is the
 #' default model for this function. \code{model} default value is set to \code{'both'}
 #'  to show normal and t-student VaR and ES. See example below.
 #' @param df An integer (\code{df}>2) denoting the degrees of freedom, only required if \code{model='t-student'}. Otherwise it has to be \code{NULL}.
@@ -21,16 +22,21 @@
 #'
 #' @return
 #' A \code{data.frame} containing each risk measure at its corresponding confidence level.
-#'  @references
+#' @references
 #' Dhaene J., Tsanakas A., Valdez E. and Vanduffel S. (2011). \emph{Optimal Capital Allocation Principles}. The Journal of Risk and Insurance. Vol. 00, No. 0, 1-28.
+#'
 #' Urbina, J. (2013) \emph{Quantifying Optimal Capital Allocation Principles based on Risk Measures.} Master Thesis, Universitat Politècnica de Catalunya.
+#'
 #' Urbina, J. and Guillén, M. (2014). \emph{An application of capital allocation principles to operational risk and the cost of fraud}. Expert Systems with Applications. 41(16):7023-7031.
 #'
 #' @seealso
 #' \code{\link{VaR}}, \code{\link{ES}}
 #'
 #'@author Jilber Urbina
-#'@export
+#' @noMd
+#' @export
+#' @importFrom mathjaxr preview_rd
+#' @importFrom stats cov dnorm dt qnorm qt var
 #'@examples
 #'# Reproducing Table 2.1 in page 47 of
 #'# McNeal A., Frey R. and Embrechts P (2005).
